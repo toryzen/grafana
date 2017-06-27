@@ -82,7 +82,7 @@ func (db *Mysql) SqlType(c *Column) string {
 
 	switch c.Type {
 	case DB_Char, DB_Varchar, DB_NVarchar, DB_TinyText, DB_Text, DB_MediumText, DB_LongText:
-		res += " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
+		res += " CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci"
 	}
 
 	return res
@@ -97,7 +97,7 @@ func (db *Mysql) TableCheckSql(tableName string) (string, []interface{}) {
 func (db *Mysql) UpdateTableSql(tableName string, columns []*Column) string {
 	var statements = []string{}
 
-	statements = append(statements, "DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
+	statements = append(statements, "DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci")
 
 	for _, col := range columns {
 		statements = append(statements, "MODIFY "+col.StringNoPk(db))
